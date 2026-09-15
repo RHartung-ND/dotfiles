@@ -2,4 +2,4 @@ dotfile_bk_*
 vim/.vim/plugged
 vim/.vim/undodir
 vim/.vim/spell
-vim/undodir
+vim/.vim/undodir
