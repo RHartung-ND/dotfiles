@@ -130,7 +130,7 @@ Plug 'rhysd/vim-grammarous'            " GrammarCheck using LanguageTool
 Plug 'ron89/thesaurus_query.vim'       " Synonym query
 
 " Other
-Plug 'wakatime/vim-wakatime'           " Wakatime time tracking
+" Plug 'wakatime/vim-wakatime'           " Wakatime time tracking
 Plug 'ihsanturk/neuron.vim'            " For neuron Zettelkasten
 Plug 'liuchengxu/vim-which-key'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -283,9 +283,22 @@ set foldmethod=indent   " fold based on indent level
 
 " Movement
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Line wrapping
+:set whichwrap+=>,l,],~
+:set whichwrap+=<,h,[
+
+
 " move vertically by visual line
-nnoremap j gj
-nnoremap k gk
+nnoremap k gj
+xnoremap k gk
+xnoremap j gj
+nnoremap j gk
+
+nnoremap J :move-2<CR>==
+xnoremap J :move-2<CR>gv=gv
+nnoremap K :move+<CR>==
+xnoremap K :move'>+<CR>gv=gv
+
 " highlight last inserted text
 nnoremap gV `[v`]
 
@@ -296,13 +309,6 @@ map L $
 " (Shift)Tab (de)indents code
 vnoremap <Tab> >
 vnoremap <S-Tab> <
-
-" Capital JK move code lines/blocks up & down
-" TODO improve functionality
-nnoremap K :move-2<CR>==
-nnoremap J :move+<CR>==
-xnoremap K :move-2<CR>gv=gv
-xnoremap J :move'>+<CR>gv=gv
 
 " Search results centered please
 nnoremap <silent> n nzz
@@ -766,11 +772,11 @@ if exists('g:coc_custom_config')
         \ CheckBackspace() ? "\<Tab>" :
         \ coc#refresh()
     inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-    
+
     " Make <CR> to accept selected completion item or notify coc.nvim to format
     inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                                   \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-    
+
     function! CheckBackspace() abort
         let col = col('.') - 1
         return !col || getline('.')[col - 1]  =~# '\s'

@@ -139,3 +139,11 @@ alias jctl="journalctl -p 3 -xb"
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
+## Git
+alias ga='git add'
+alias gs='git status'
+alias gp='git pull'
+alias gg='git graph'
+# unalias gd
+alias gd='git diff'
+alias gspp='git stash && git pull && git stash pop'
