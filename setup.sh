@@ -11,11 +11,6 @@ function backup_if_exists() {
 }
 
 # Clean common conflicts
-backup_if_exists ~/.bash_profile
-backup_if_exists ~/.bashrc
-backup_if_exists ~/.gitconfig
-backup_if_exists ~/.tmux.conf
-backup_if_exists ~/.profile
 backup_if_exists ~/.vim
 
 for program in "${PROGRAMS[@]}"; do

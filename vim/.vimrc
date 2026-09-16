@@ -299,6 +299,9 @@ xnoremap J :move-2<CR>gv=gv
 nnoremap K :move+<CR>==
 xnoremap K :move'>+<CR>gv=gv
 
+inoremap <C-h> <C-w>
+inoremap <C-DEL> <C-o>dw
+
 " highlight last inserted text
 nnoremap gV `[v`]
 
@@ -613,7 +616,6 @@ autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | ex
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <C-g> :Goyo<CR>
 map <C-p> :Files<CR>
-map <C-h> :History<CR>
 
 " Leader
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
