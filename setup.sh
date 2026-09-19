@@ -1,6 +1,6 @@
 #!/bin/bash
 # Copied some files from https://github.com/JJGO/dotfiles/tree/master
-PROGRAMS=(vim)
+PROGRAMS=(vim fish)
 OLD_DOTFILES="dotfile_bk_$(date -u +"%Y%m%d%H%M%S")"
 mkdir -p "$OLD_DOTFILES"
 
@@ -11,10 +11,12 @@ function backup_if_exists() {
 }
 
 # Clean common conflicts
-backup_if_exists ~/.vim
+backup_if_exists ~/.config/vim
+backup_if_exists ~/.config/fish
 
 for program in "${PROGRAMS[@]}"; do
-    stow -v --target="$HOME" "$program"
+    mkdir -p "$HOME/.config/$program"
+    stow -v --target="$HOME/.config/$program" "$program"
     echo "Configuring $program"
 done
 

@@ -2,7 +2,7 @@ fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
 
 ## Source from conf.d before our fish config
-source /usr/share/cachyos-fish-config/conf.d/done.fish
+source $HOME/.config/fish/done.fish
 
 
 ## Set values
@@ -97,6 +97,7 @@ alias la='eza -a --color=always --group-directories-first --icons auto'  # all f
 alias ll='eza -l --color=always --group-directories-first --icons auto'  # long format
 alias lt='eza -aT --color=always --group-directories-first --icons auto' # tree listing
 alias l.="eza -a | grep -e '^\.'"                                     # show only dotfiles
+alias lah='eza -lah --color=always --group-directories-first --icons auto' # preferred listing
 
 # Common use
 alias grubup="sudo grub-mkconfig -o /boot/grub/grub.cfg"
