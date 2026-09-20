@@ -17,6 +17,7 @@ function backup_if_exists() {
 
 # Clean common conflicts
 backup_if_exists ~/.config/vim
+backup_if_exists ~/.config/nvim
 backup_if_exists ~/.config/fish
 backup_if_exists ~/.config/tmux
 
@@ -27,5 +28,12 @@ for program in "${PROGRAMS[@]}"; do
 done
 
 mkdir -p ~/.vim/undodir
+
+# Install plugins for vim and nvim
+mkdir -p ~/.config/nvim
+echo "set runtimepath^=~/.config/vim runtimepath+=~/.config/vim/after" > ~/.config/nvim/init.vim
+echo "let &packpath = &runtimepath" >> ~/.config/nvim/init.vim
+echo "source ~/.config/vim/.vimrc" >> ~/.config/nvim/init.vim
+nvim -u ~/.config/vim/.vimrc --headless +PlugInstall +qall
 
 echo "Done!"
