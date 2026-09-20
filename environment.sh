@@ -61,6 +61,14 @@ if ! nvim -v &> /dev/null; then
     git clone https://github.com/neovim/neovim
     cd neovim
     git checkout stable
+    cmake --version &> /dev/null || {
+        echo "CMake is not installed"
+        echo "Getting CMake..."
+        module load cmake || {
+            echo "CMake is not available. Please install it manually."
+            exit 1
+        }
+    }
     make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=${TEMP_DIR}/to_copy_to_local"
     make install
     cp -rv "${TEMP_DIR}/to_copy_to_local/"* "$HOME/.local/"

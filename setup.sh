@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Download software
-source environment.sh
+/bin/bash environment.sh
 
 
 # Copied some files from https://github.com/JJGO/dotfiles/tree/master
@@ -31,6 +31,8 @@ mkdir -p ~/.vim/undodir
 
 # Install plugins for vim and nvim
 mkdir -p ~/.config/nvim
+curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim" --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 echo "set runtimepath^=~/.config/vim runtimepath+=~/.config/vim/after" > ~/.config/nvim/init.vim
 echo "let &packpath = &runtimepath" >> ~/.config/nvim/init.vim
 echo "source ~/.config/vim/.vimrc" >> ~/.config/nvim/init.vim

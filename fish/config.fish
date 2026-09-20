@@ -148,3 +148,5 @@ alias gg='git graph'
 # unalias gd
 alias gd='git diff'
 alias gspp='git stash && git pull && git stash pop'
+
+alias vim='nvim'
