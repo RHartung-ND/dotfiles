@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# Download software
+source environment.sh
+
+
 # Copied some files from https://github.com/JJGO/dotfiles/tree/master
 PROGRAMS=(vim fish tmux)
 OLD_DOTFILES="dotfile_bk_$(date -u +"%Y%m%d%H%M%S")"
