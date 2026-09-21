@@ -27,11 +27,13 @@ else
     echo "Rust is installed with version: $(rustc -V)"
 fi
 
+rustup update stable
+
 
 #######################
 # Cargo Crates
 #######################
-CargoCrates=(eza stow-rs)
+CargoCrates=(eza stow-rs uv)
 
 # Fetch the list of currently installed global crates once
 installed_crates=$(cargo install --list | grep -E '^[a-zA-Z0-9_-]+ v[0-9]+' | awk '{print $1}')
