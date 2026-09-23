@@ -23,7 +23,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch-easymotion.vim'
-Plug 'wikitopian/hardmode'            " Disable arrow keys and similar
 
 " Copy pasting
 " TODO Figure out easyclip family
