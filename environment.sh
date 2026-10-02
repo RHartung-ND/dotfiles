@@ -3,7 +3,7 @@
 mkdir -p ~/.local/bin
 
 #######################
-#        Node          #
+#        Node         #
 #######################
 echo "Checking for Node..."
 if ! node -v &> /dev/null; then
@@ -16,7 +16,7 @@ fi
 
 
 #######################
-#         Rust         #
+#         Rust        #
 #######################
 echo "Checking for Rust..."
 if ! rustc -V &> /dev/null; then
@@ -31,7 +31,7 @@ rustup update stable
 
 
 #######################
-#     Cargo Crates     #
+#     Cargo Crates    #
 #######################
 CargoCrates=(eza stow-rs uv)
 
@@ -83,7 +83,7 @@ fi
 
 
 #######################
-#        FISH          #
+#        FISH         #
 #######################
 if ! fish -v &> /dev/null; then
     if ! [ -f $HOME/.local/bin/fish ]; then
