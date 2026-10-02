@@ -4,6 +4,9 @@ fish_add_path $HOME/.cargo/bin
 ## Source from conf.d before our fish config
 source $HOME/.config/fish/done.fish
 
+## Source from local commands
+source $HOME/.fishrc.fish
+
 
 ## Set values
 ## Run fastfetch as welcome message

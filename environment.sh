@@ -107,3 +107,7 @@ if ! fish -v &> /dev/null; then
         rm -rf $TEMP_DIR
     fi
 fi
+
+if ! [ -f $HOME/.fishrc.fish ]; then
+    touch $HOME/.fishrc.fish
+fi
