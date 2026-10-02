@@ -102,8 +102,7 @@ if ! fish -v &> /dev/null; then
         # development version.
         git checkout "$(git for-each-ref refs/tags/ | awk '$2 == "tag" { print $3 }' | tail -1)"
 
-        uv run --no-managed-python \
-            cargo install --locked --path .
+        uv run cargo install --locked --path .
         cd $current_dir
         rm -rf $TEMP_DIR
     fi
