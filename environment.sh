@@ -3,7 +3,7 @@
 mkdir -p ~/.local/bin
 
 #######################
-# Node
+#        Node          #
 #######################
 echo "Checking for Node..."
 if ! node -v &> /dev/null; then
@@ -16,7 +16,7 @@ fi
 
 
 #######################
-# Rust
+#         Rust         #
 #######################
 echo "Checking for Rust..."
 if ! rustc -V &> /dev/null; then
@@ -31,7 +31,7 @@ rustup update stable
 
 
 #######################
-# Cargo Crates
+#     Cargo Crates     #
 #######################
 CargoCrates=(eza stow-rs uv)
 
@@ -48,12 +48,12 @@ for crate in "${CargoCrates[@]}"; do
 done
 
 #######################
-# NEOVIM
+#       NEOVIM        #
 #######################
 if ! nvim -v &> /dev/null; then
     echo "NeoVim is not installed"
     echo "Installing NeoVim..."
-  
+
     current_dir=$(pwd)
     NOW=$(date -u +"%Y%m%d%H%M%S")
     TEMP_DIR="/tmp/install_neovim_$NOW"
@@ -74,10 +74,37 @@ if ! nvim -v &> /dev/null; then
     make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=${TEMP_DIR}/to_copy_to_local"
     make install
     cp -rv "${TEMP_DIR}/to_copy_to_local/"* "$HOME/.local/"
-    
+
     cd $current_dir
     rm -rf $TEMP_DIR
 else
     echo "NeoVim is installed with version: $(nvim -v)"
 fi
 
+
+#######################
+#        FISH          #
+#######################
+if ! fish -v &> /dev/null; then
+    if ! [ -f $HOME/.local/bin/fish ]; then
+        echo "FISH is not installed"
+        echo "Installing FISH..."
+
+        current_dir=$(pwd)
+        NOW=$(date -u +"%Y%m%d%H%M%S")
+        TEMP_DIR="/tmp/install_fish_$NOW"
+        mkdir -p "$TEMP_DIR"
+        cd $TEMP_DIR
+        git clone https://github.com/fish-shell/fish-shell
+        cd fish-shell
+
+        # Optional: check out a specific version rather than building the latest
+        # development version.
+        git checkout "$(git for-each-ref refs/tags/ | awk '$2 == "tag" { print $3 }' | tail -1)"
+
+        uv run --no-managed-python \
+            cargo install --locked --path .
+        cd $current_dir
+        rm -rf $TEMP_DIR
+    fi
+fi
